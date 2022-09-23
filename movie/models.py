@@ -71,6 +71,10 @@ class Movie(models.Model):
     url = models.SlugField(max_length=160, unique=True)
     draft = models.BooleanField("Черновик", default=False)
 
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(args, kwargs)
+    #     self.review_set = None
+
     def __str__(self):
         return self.title
 
@@ -103,11 +107,12 @@ class RatingStar(models.Model):
     value = models.PositiveSmallIntegerField("Значение", default=0)
 
     def __str__(self):
-        return self.value
+        return f'{self.value}'
 
     class Meta:
         verbose_name = "Звезда рейтинга"
         verbose_name_plural = "Звезды рейтинга"
+        ordering = ["-value"]
 
 
 class Rating(models.Model):
