@@ -23,13 +23,14 @@ class MoviesView(GenreYear, ListView):
     model = Movie
     queryset = Movie.objects.filter(draft=False)
     template_name = "movie/movie_list.html"
-
+    paginate_by = 1
 
 class MovieDetailView(GenreYear, DetailView):
     """Полное описание фильма"""
     model = Movie
     slug_field = "url"
     template_name = "movie/movie_detail.html"
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
